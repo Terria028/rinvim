@@ -4,6 +4,7 @@
 local config = {
 	keymap = "default",
 	number = true,
+    theme = "onedark",
 	options = {
 		expandtab = true,
 		smartindent = true,
@@ -57,11 +58,15 @@ local config = {
 		"navarasu/onedark.nvim",
 	},
 	plugins_init = {
-		lualine = require("config.lualine"),
+		lualine = require("user.terria.config.lualine"),
 		nvim_comment = {
 			line_mapping = ".",
 			operator_mapping = ",",
 		},
+        onedark = {
+            style = "darker",
+            transparent = true,
+        },
 		["rust-tools"] = function()
 			local rt = require("rust-tools")
 			rt.setup({

@@ -1,8 +1,9 @@
 Rivim = {}
 local user_cfg = require("user." .. User)
 local plugins_init = user_cfg["plugins_init"]
-local keymap = user_cfg["keymap"]
-Rivim.syntax = user_cfg["syntax"]
+local keymap = user_cfg.keymap
+Rivim.syntax = user_cfg.syntax
+
 require("user.keymap." .. keymap)
 
 require('lsp-config.handler')
@@ -28,4 +29,12 @@ vim.wo.number = user_cfg["number"]
 -- Override Vim options --
 for key, opt in pairs(user_cfg["options"]) do
     vim.o[key] = opt
+end
+
+-- Override the theme --
+if user_cfg.theme ~= nil then
+    local ok, theme = pcall(require, user_cfg.theme)
+    if ok then
+        theme.load()
+    end
 end
