@@ -1,0 +1,102 @@
+--                      Configuration Table
+-- All configuration changes should go inside of a config table
+
+local config = {
+	keymap = "default",
+	number = true,
+	options = {
+		expandtab = true,
+		smartindent = true,
+		tabstop = 4,
+		shiftwidth = 4,
+	},
+	lsp = {
+		servers = {
+			"tsserver",
+			"clangd",
+			"sumneko_lua",
+			"html",
+			"denols",
+			"pyright",
+		},
+		config = {
+			html = {},
+		},
+	},
+	-- This will install a syntax tree from tree sitter plugin
+	syntax = {
+		"cpp",
+		"rust",
+		"lua",
+		"typescript",
+		"tsx",
+		"html",
+		"gdscript",
+		"css",
+		"c_sharp",
+	},
+	-- If PackerSync failed, try :luafile % inside of plugin.lua file
+	-- Restart required and needed to sync after changes
+	default_plugins = {
+		presence = true,
+		wilder = true,
+		harpoon = true,
+	},
+	plugins = {
+		-- LSP --
+        "simrat39/rust-tools.nvim",
+
+		-- Utilities --
+		"jiangmiao/auto-pairs",
+		"p00f/nvim-ts-rainbow",
+		"terrortylor/nvim-comment",
+		"svermeulen/vimpeccable",
+
+		-- UI --
+		"nvim-lualine/lualine.nvim",
+		"navarasu/onedark.nvim",
+	},
+	plugins_init = {
+		lualine = require("config.lualine"),
+		nvim_comment = {
+			line_mapping = ".",
+			operator_mapping = ",",
+		},
+		["rust-tools"] = function()
+			local rt = require("rust-tools")
+			rt.setup({
+				tools = {
+					inlay_hints = {
+						parameter_hints_prefix = "<-  ",
+						other_hints_prefix = "=>  ",
+					},
+				},
+				server = {
+					settings = {
+						["rust-analyzer"] = {
+							cargo = {
+								loadOutDirsFromCheck = true,
+							},
+							checkOnSave = {
+								command = "clippy",
+							},
+							experimental = {
+								procAttrMacros = true,
+							},
+						},
+					},
+					on_attach = function(_, bufnr)
+						vim.keymap.set("n", "K", rt.hover_actions.hover_actions, {
+							buffer = bufnr,
+						})
+						vim.keymap.set("n", "gd", rt.code_action_group.code_action_group, {
+							buffer = bufnr,
+						})
+					end,
+				},
+			})
+		end,
+	},
+}
+
+return config
