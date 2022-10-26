@@ -4,7 +4,7 @@
 local config = {
 	keymap = "default",
 	number = true,
-    theme = "onedark",
+	theme = "onedark",
 	options = {
 		expandtab = true,
 		smartindent = true,
@@ -45,7 +45,7 @@ local config = {
 	},
 	plugins = {
 		-- LSP --
-        "simrat39/rust-tools.nvim",
+		"simrat39/rust-tools.nvim",
 
 		-- Utilities --
 		"jiangmiao/auto-pairs",
@@ -63,10 +63,10 @@ local config = {
 			line_mapping = ".",
 			operator_mapping = ",",
 		},
-        onedark = {
-            style = "darker",
-            transparent = true,
-        },
+		onedark = {
+			style = "darker",
+			transparent = true,
+		},
 		["rust-tools"] = function()
 			local rt = require("rust-tools")
 			rt.setup({

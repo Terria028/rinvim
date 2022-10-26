@@ -17,7 +17,6 @@ vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
 vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, opts)
 
-
 local config = {
 	virtual_text = false,
 	signs = { active = signs },
@@ -37,5 +36,5 @@ local config = {
 vim.diagnostic.config(config)
 
 for server = 1, #Rivim.lsp.servers do
-    Rivim.lsp.setup(Rivim.lsp.servers[server])
+	Rivim.lsp.setup(Rivim.lsp.servers[server])
 end

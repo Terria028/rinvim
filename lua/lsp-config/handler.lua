@@ -1,6 +1,6 @@
 Rivim.lsp = {}
-local user = require("user."..User)
-local lspconfig = require('lspconfig')
+local user = require("user." .. User)
+local lspconfig = require("lspconfig")
 
 Rivim.lsp.config = user.lsp.config
 Rivim.lsp.servers = user.lsp.servers
@@ -12,8 +12,8 @@ Rivim.lsp.lsp_flags = {
 }
 
 Rivim.lsp.setup = function(server)
-    local opts = Rivim.lsp.server_settings(server)
-    lspconfig[server].setup(opts)
+	local opts = Rivim.lsp.server_settings(server)
+	lspconfig[server].setup(opts)
 end
 
 Rivim.lsp.on_attach = function(_, bufnr)
@@ -35,13 +35,13 @@ Rivim.lsp.on_attach = function(_, bufnr)
 end
 
 Rivim.lsp.server_settings = function(server)
-   	local ok, server_opts = pcall(require, "lsp-config.servers." .. server)
+	local ok, server_opts = pcall(require, "lsp-config.servers." .. server)
 	local server_opt = ok and server_opts or {}
-    if Rivim.lsp.config[server] then
-        server_opt = Rivim.lsp.config[server]
-    end
+	if Rivim.lsp.config[server] then
+		server_opt = Rivim.lsp.config[server]
+	end
 	server_opt.on_attach = Rivim.lsp.on_attach
 	server_opt.capabilities = Rivim.lsp.capabilities
 	server_opt.flags = Rivim.lsp.lsp_flags
-    return server_opt
+	return server_opt
 end
