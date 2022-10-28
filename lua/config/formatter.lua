@@ -1,7 +1,7 @@
 require("formatter").setup({
-	filetype = {
-		lua = {
-			require("formatter.filetypes.lua").stylua,
-		},
-	},
+  filetype = {
+    lua = {
+      require("formatter.filetypes.lua").stylua,
+    },
+  },
 })
