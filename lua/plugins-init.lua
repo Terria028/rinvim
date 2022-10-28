@@ -6,17 +6,9 @@ Rivim.syntax = user_cfg.syntax
 
 require("user.keymap." .. keymap)
 
+
 require("lsp-config.handler")
-require("config.formatter")
-require("config.wilder")
-require("config.mason")
-require("config.treesitter")
-require("config.harpoon")
-require("config.toggleterm")
-require("config.neotree")
-require("dap-config.nvim-dap")
 require("lsp-config.language-servers")
-require("lsp-config.nvim-cmp-config")
 
 -- Override default setup --
 for key, init in pairs(plugins_init) do
@@ -27,7 +19,14 @@ for key, init in pairs(plugins_init) do
 	end
 end
 
-vim.wo.number = user_cfg["number"]
+if user_cfg["number"] == "relative" then
+	vim.wo.relativenumber = true
+	vim.wo.number = true
+elseif user_cfg["number"] == "absolute" then
+	vim.wo.number = true
+else
+	vim.wo.number = false
+end
 
 -- Override Vim options --
 for key, opt in pairs(user_cfg["options"]) do

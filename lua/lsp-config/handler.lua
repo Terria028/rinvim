@@ -5,7 +5,8 @@ local lspconfig = require("lspconfig")
 Rivim.lsp.config = user.lsp.config
 Rivim.lsp.servers = user.lsp.servers
 
-Rivim.lsp.capabilities = require("cmp_nvim_lsp").default_capabilities()
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
+Rivim.lsp.capabilities = capabilities
 
 Rivim.lsp.lsp_flags = {
 	debounce_text_changes = 150,

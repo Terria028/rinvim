@@ -3,5 +3,6 @@
 -- Choose the theme you like, or use other ones aswell
 User = "terria"
 
+require("impatient")
 require("plugins-init")
 

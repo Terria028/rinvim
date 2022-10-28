@@ -3,7 +3,7 @@
 
 local config = {
 	keymap = "default",
-	number = true,
+	number = "relative",
 	theme = "onedark",
 	options = {
 		expandtab = true,
@@ -13,12 +13,13 @@ local config = {
 	},
 	lsp = {
 		servers = {
-			"tsserver",
+			-- "tsserver",
 			"clangd",
 			"sumneko_lua",
 			"html",
 			"denols",
 			"pyright",
+			"csharp_ls",
 		},
 		config = {
 			html = {},
@@ -39,19 +40,17 @@ local config = {
 	-- If PackerSync failed, try :luafile % inside of plugin.lua file
 	-- Restart required and needed to sync after changes
 	default_plugins = {
-		presence = true,
-		wilder = true,
-		harpoon = true,
+		["andweeb/presence.nvim"] = true,
+		["gelguy/wilder.nvim"] = true,
+		["ThePrimeagen/harpoon"] = true,
 	},
 	plugins = {
 		-- LSP --
 		"simrat39/rust-tools.nvim",
 
 		-- Utilities --
-		"jiangmiao/auto-pairs",
 		"p00f/nvim-ts-rainbow",
 		"terrortylor/nvim-comment",
-		"svermeulen/vimpeccable",
 
 		-- UI --
 		"nvim-lualine/lualine.nvim",
@@ -69,7 +68,7 @@ local config = {
 		},
 		["rust-tools"] = function()
 			local rt = require("rust-tools")
-			rt.setup({
+			return {
 				tools = {
 					inlay_hints = {
 						parameter_hints_prefix = "<-  ",
@@ -99,7 +98,7 @@ local config = {
 						})
 					end,
 				},
-			})
+			}
 		end,
 	},
 }
