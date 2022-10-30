@@ -89,11 +89,12 @@ local config = {
               },
             },
           },
-          on_attach = function(_, bufnr)
+          on_attach = function(client, bufnr)
+            Rivim.lsp.on_attach(client, bufnr)
             vim.keymap.set("n", "K", rt.hover_actions.hover_actions, {
               buffer = bufnr,
             })
-            vim.keymap.set("n", "gd", rt.code_action_group.code_action_group, {
+            vim.keymap.set("n", "<space>ca", rt.code_action_group.code_action_group, {
               buffer = bufnr,
             })
           end,

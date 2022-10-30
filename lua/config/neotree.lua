@@ -4,6 +4,9 @@ require("neo-tree").setup({
   enable_diagnostics = true,
   sort_case_insensitive = false,
   sort_function = nil,
+  source_selector = {
+    winbar = true
+  },
   default_component_configs = {
     container = {
       enable_character_fade = true,

@@ -27,6 +27,8 @@ else
   vim.wo.number = false
 end
 
+vim.o.mouse = "a"
+
 -- Override Vim options --
 for key, opt in pairs(user_cfg["options"]) do
   vim.o[key] = opt

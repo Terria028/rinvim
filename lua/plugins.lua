@@ -34,6 +34,12 @@ local plugins = {
   ["nvim-treesitter/nvim-treesitter-refactor"] = {
     after = "nvim-treesitter",
   },
+  ["SmiteshP/nvim-navic"] = {
+    requires = "neovim/nvim-lspconfig",
+    config = function()
+      require("config.navic")
+    end,
+  },
   ["mfussenegger/nvim-dap"] = {
     config = function()
       require("dap-config.nvim-dap")
