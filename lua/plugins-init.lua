@@ -1,3 +1,4 @@
+require("impatient")
 Rivim = {}
 local user_cfg = require("user." .. User)
 local plugins_init = user_cfg["plugins_init"]
